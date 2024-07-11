@@ -20,32 +20,38 @@ export default function Nav({}: NavProps) {
   };
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   return (
-    <nav className="relative">
+    <nav className="relative z-[1]">
       <div className="container relative z-[1] flex flex-col bg-white">
         <div className="flex items-center justify-between pb-[18px] pt-[20px] max-sm:grid max-sm:grid-cols-3 max-sm:justify-center">
-          <Button
-            variant="link"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.7 } }}
             className="hidden max-sm:block"
-            onClick={() => {
-              setMobileNavOpen((prev) => !prev);
-            }}
           >
-            {mobileNavOpen ? (
-              <Image
-                alt="hamburger-icon"
-                src="/close-icon.svg"
-                width={24}
-                height={24}
-              />
-            ) : (
-              <Image
-                alt="hamburger-icon"
-                src="/hamburger-icon.svg"
-                width={25}
-                height={18}
-              />
-            )}
-          </Button>
+            <Button
+              variant="link"
+              className=""
+              onClick={() => {
+                setMobileNavOpen((prev) => !prev);
+              }}
+            >
+              {mobileNavOpen ? (
+                <Image
+                  alt="hamburger-icon"
+                  src="/close-icon.svg"
+                  width={24}
+                  height={24}
+                />
+              ) : (
+                <Image
+                  alt="hamburger-icon"
+                  src="/hamburger-icon.svg"
+                  width={25}
+                  height={18}
+                />
+              )}
+            </Button>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, x: "-20px" }}
             animate={{ opacity: 1, x: "0px", transition: { duration: 0.7 } }}
