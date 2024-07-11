@@ -1,113 +1,269 @@
+"use client";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
+import Slider from "@/components/Slider";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import FooterForm from "@/components/FooterForm";
+import Nav from "@/components/Nav";
+import HeroSection from "@/components/HeroSection";
+import { motion, Variants } from "framer-motion";
 
 export default function Home() {
+  const parentVariant: Variants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: { delayChildren: 0.2 },
+    },
+  };
+  const childrenVariant: Variants = {
+    initial: { opacity: 0, y: "70px" },
+    animate: {
+      opacity: 1,
+      y: "0px",
+      transition: { duration: 0.7 },
+    },
+  };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Nav />
+      <main className="pt-[27px] max-md:pt-[18px]">
+        <div className="container flex flex-col">
+          <motion.span
+            initial={{ opacity: 0, y: "-50%" }}
+            animate={{
+              opacity: 1,
+              y: "0%",
+              transition: { duration: 0.7, delay: 0.3 },
+            }}
+            className="font-madeOuterSansAlt custom-text-color-with-shadow mb-[32px] block text-center text-[20px] font-medium leading-[25px] max-md:mb-[23px] max-md:text-[14px] max-md:leading-[17.5px]"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            Dropping Soon
+          </motion.span>
+          <HeroSection />
+
+          <section className="-mx-8 flex flex-col overflow-hidden rounded-[30px] pb-[74px] pt-[44px] backdrop-blur-[35px] max-lg:backdrop-blur-none">
+            <motion.h2
+              initial={{ opacity: 0, y: "40px" }}
+              whileInView={{ opacity: 1, y: "0px" }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="mb-[104px] text-center text-[42px] font-medium leading-[75px] max-md:mb-[48px] max-md:text-[24px] max-md:font-normal max-md:leading-[75px]"
+            >
+              Why we are different
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: "40px" }}
+              whileInView={{ opacity: 1, y: "0px" }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <Slider className="mb-[160px] flex flex-col items-center justify-end max-md:mb-[102px]" />
+            </motion.div>
+            <Button className="mx-auto h-auto rounded-[30px] bg-[#353640] px-[32px] py-[16px] text-[16px] font-semibold leading-[20px] text-white">
+              Get early access
+            </Button>
+          </section>
+          <section className="flex flex-col gap-[43px] pb-[34px] pt-[16px] max-md:gap-[12px]">
+            <motion.h2
+              initial={{ opacity: 0, y: "40px" }}
+              whileInView={{ opacity: 1, y: "0px" }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="font-aBeeZee text-center text-[42px] leading-[75px] text-[#323131] max-md:text-[24px] max-md:font-normal max-md:leading-[28px]"
+            >
+              Frequently asked questions
+            </motion.h2>
+            <Accordion type="single" collapsible>
+              <motion.div
+                variants={parentVariant}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <motion.div variants={childrenVariant}>
+                  <AccordionItem
+                    value="item-1"
+                    className="data-[state=open]:bg-buttonGradient w-full overflow-hidden rounded-[19px] border-none p-[3px]"
+                  >
+                    <div className="rounded-[16px] bg-white px-[26px]">
+                      <AccordionTrigger className="pt-[40px] text-start text-[18px] font-normal leading-[23px] text-[#323131]">
+                        What is Packet Real Estate Platform?
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-[30px] text-[16px] font-normal leading-[20px] text-[#4D4949]">
+                        The registration process is designed to be quick and
+                        seamless. Real estate companies undergo advanced
+                        authentication to ensure legitimacy, while investors and
+                        end users can register using simple and secure wallet
+                        authentication. This process eliminates the need for
+                        extensive paperwork and ensures a smooth onboarding
+                        experience.
+                      </AccordionContent>
+                    </div>
+                  </AccordionItem>
+                  <div className="mx-auto mb-[30px] mt-[30px] h-[1px] w-[97%] bg-[#323131]"></div>
+                </motion.div>
+                <motion.div variants={childrenVariant}>
+                  <AccordionItem
+                    value="item-2"
+                    className="data-[state=open]:bg-buttonGradient w-full overflow-hidden rounded-[19px] border-none p-[3px]"
+                  >
+                    <div className="rounded-[16px] bg-white px-[26px]">
+                      <AccordionTrigger className="pt-[40px] text-start text-[18px] font-normal leading-[23px] text-[#323131]">
+                        What types of properties can I find on the platform?
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-[30px] text-[16px] font-normal leading-[20px] text-[#4D4949]">
+                        The registration process is designed to be quick and
+                        seamless. Real estate companies undergo advanced
+                        authentication to ensure legitimacy, while investors and
+                        end users can register using simple and secure wallet
+                        authentication. This process eliminates the need for
+                        extensive paperwork and ensures a smooth onboarding
+                        experience.
+                      </AccordionContent>
+                    </div>
+                  </AccordionItem>
+                  <div className="mx-auto mb-[30px] mt-[30px] h-[1px] w-[97%] bg-[#323131]"></div>
+                </motion.div>
+                <motion.div variants={childrenVariant}>
+                  <AccordionItem
+                    value="item-3"
+                    className="data-[state=open]:bg-buttonGradient w-full overflow-hidden rounded-[19px] border-none p-[3px]"
+                  >
+                    <div className="rounded-[16px] bg-white px-[26px]">
+                      <AccordionTrigger className="pt-[40px] text-start text-[18px] font-normal leading-[23px] text-[#323131]">
+                        How does the registration process work?
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-[30px] text-[16px] font-normal leading-[20px] text-[#4D4949]">
+                        The registration process is designed to be quick and
+                        seamless. Real estate companies undergo advanced
+                        authentication to ensure legitimacy, while investors and
+                        end users can register using simple and secure wallet
+                        authentication. This process eliminates the need for
+                        extensive paperwork and ensures a smooth onboarding
+                        experience.
+                      </AccordionContent>
+                    </div>
+                  </AccordionItem>
+                  <div className="mx-auto mb-[30px] mt-[30px] h-[1px] w-[97%] bg-[#323131]"></div>
+                </motion.div>
+                <motion.div variants={childrenVariant}>
+                  <AccordionItem
+                    value="item-4"
+                    className="data-[state=open]:bg-buttonGradient w-full overflow-hidden rounded-[19px] border-none p-[3px]"
+                  >
+                    <div className="rounded-[16px] bg-white px-[26px]">
+                      <AccordionTrigger className="pt-[40px] text-start text-[18px] font-normal leading-[23px] text-[#323131]">
+                        How are property transactions secured on the platform?
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-[30px] text-[16px] font-normal leading-[20px] text-[#4D4949]">
+                        The registration process is designed to be quick and
+                        seamless. Real estate companies undergo advanced
+                        authentication to ensure legitimacy, while investors and
+                        end users can register using simple and secure wallet
+                        authentication. This process eliminates the need for
+                        extensive paperwork and ensures a smooth onboarding
+                        experience.
+                      </AccordionContent>
+                    </div>
+                  </AccordionItem>
+                </motion.div>
+              </motion.div>
+            </Accordion>
+            <div className="bg-navBorder h-[1px] w-full"></div>
+          </section>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
+      </main>
+      <footer className="pb-[148px] pt-[60px] max-md:pb-[60px] max-md:pt-0">
+        <div className="container grid grid-cols-4 gap-[82px] max-lg:grid-cols-2 max-lg:gap-[40px] max-md:grid-cols-1">
+          <div className="flex flex-col gap-[24px] max-md:-order-3 max-md:gap-3.5 max-md:text-center">
+            <Link href="/" className="flex max-md:justify-center">
+              <Image
+                alt="logo"
+                src="/octa-logo.svg"
+                width={158}
+                height={36}
+                className="block max-md:hidden"
+              />
+              <Image
+                alt="logo"
+                src="/footer-mobile-logo.svg"
+                width={79}
+                height={22}
+                className="hidden max-md:block"
+              />
+            </Link>
+            <span className="font-poppins text-[15px] font-normal leading-[22px] text-[#3d3d3d] max-md:mx-auto max-md:max-w-[151px]">
+              Free Event Hosting, Instant Ticket Sales
             </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+            <div className="flex flex-col gap-[22px]">
+              <span className="font-poppins text-[15px] font-normal leading-[22px] text-[#3D3D3D] max-md:mx-auto max-md:max-w-[200px]">
+                All Rights Reserved © 2024{" "}
+                <strong className="max-md:font-normal">OCTA</strong>
+              </span>
+              <div className="flex items-center gap-[32px] max-md:hidden max-md:justify-center">
+                <Image
+                  alt="facebook"
+                  src="/facebook.svg"
+                  width={28}
+                  height={28}
+                />
+                <Image
+                  alt="twitter"
+                  src="/twitter.svg"
+                  width={28}
+                  height={28}
+                />
+                <Image
+                  alt="instagram"
+                  src="/instagram.svg"
+                  width={28}
+                  height={28}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 max-md:-order-1 max-md:gap-2 max-md:text-center">
+            <h5 className="font-poppins text-[20px] font-semibold leading-[30px] text-[#3D3D3D]">
+              INFORMATION LINK
+            </h5>
+            <div className="font-poppins flex flex-col gap-2.5 text-[15px] font-normal leading-[22px] text-[#3D3D3D]">
+              <span>Explore</span>
+              <span>Connect wallet</span>
+              <span>FAQ</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 max-md:-order-2 max-md:gap-2 max-md:text-center">
+            <h5 className="font-poppins text-[20px] font-semibold leading-[30px] text-[#3D3D3D]">
+              CONTACT US
+            </h5>
+            <div className="font-poppins flex flex-col gap-2.5 text-[15px] font-normal leading-[22px] text-[#3D3D3D]">
+              <span className="custom-text-color">support@octahq.com</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1 max-md:-order-4 max-md:text-center">
+            <FooterForm />
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
+            <span className="font-poppins text-[15px] font-normal leading-[22px] text-[#3D3D3D]">
+              Don’t miss out on hot deals and latest updates
             </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          </div>
+          <div className="hidden items-center gap-[32px] max-md:flex max-md:justify-center">
+            <Image alt="facebook" src="/facebook.svg" width={28} height={28} />
+            <Image alt="twitter" src="/twitter.svg" width={28} height={28} />
+            <Image
+              alt="instagram"
+              src="/instagram.svg"
+              width={28}
+              height={28}
+            />
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
