@@ -30,7 +30,7 @@ export default function Nav({}: NavProps) {
           >
             <Button
               variant="link"
-              className=""
+              className="pl-0"
               onClick={() => {
                 setMobileNavOpen((prev) => !prev);
               }}
