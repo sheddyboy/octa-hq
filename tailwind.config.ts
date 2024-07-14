@@ -23,6 +23,8 @@ const config = {
         outfit: ["var(--font-outfit)"],
         aBeeZee: ["var(--font-aBeeZee)"],
         poppins: ["var(--font-poppins)"],
+        inter: ["var(--font-inter)"],
+        kumbhSans: ["var(--font-kumbhSans)"],
       },
       backgroundImage: {
         navBorder:

@@ -1,11 +1,17 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import HeroForm from "@/components/HeroForm";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
+import { X } from "lucide-react";
 
 interface NavProps {}
 
@@ -93,6 +99,10 @@ export default function Nav({}: NavProps) {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="rounded-[17px] border-0 bg-[#222529]">
+                  <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                    <X className="h-4 w-4 text-white" />
+                    <span className="sr-only">Close</span>
+                  </DialogClose>
                   <HeroForm />
                 </DialogContent>
               </Dialog>
@@ -102,13 +112,13 @@ export default function Nav({}: NavProps) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="bg-navBorder h-[1px] w-full"
+          className="h-[1px] w-full bg-navBorder"
         ></motion.div>
       </div>
       <motion.div
         initial={{ y: "-120%" }}
         animate={{ y: mobileNavOpen ? "0%" : "-120%" }}
-        className="font-poppins drop-shadow-navCard absolute hidden w-full flex-col items-center justify-center gap-[22px] bg-white py-[20px] text-center text-[14px] font-medium leading-[21px] max-sm:flex"
+        className="absolute hidden w-full flex-col items-center justify-center gap-[22px] bg-white py-[20px] text-center font-poppins text-[14px] font-medium leading-[21px] drop-shadow-navCard max-sm:flex"
       >
         <Dialog>
           <DialogTrigger asChild>

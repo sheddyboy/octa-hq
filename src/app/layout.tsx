@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
-import { Outfit, ABeeZee, Poppins } from "next/font/google";
+import { Outfit, ABeeZee, Poppins, Inter, Kumbh_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+});
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+const kumbhSans = Kumbh_Sans({
+  subsets: ["latin"],
+  variable: "--font-kumbhSans",
 });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -60,9 +70,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${madeOuterSansAlt.variable} ${outfit.variable} ${aBeeZee.variable} ${poppins.variable} font-outfit`}
+        className={`${madeOuterSansAlt.variable} ${kumbhSans.variable} ${inter.variable} ${outfit.variable} ${aBeeZee.variable} ${poppins.variable} flex min-h-dvh flex-col font-outfit`}
       >
+        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );
